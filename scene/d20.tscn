@@ -1,0 +1,319 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkcd56qyuwdka"]
+
+[ext_resource type="Script" uid="uid://dbbse507b8b6i" path="res://script/d20.gd" id="1_qw57l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0nvq"]
+bg_color = Color(0.439216, 0.368627, 0.411765, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qw57l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.501961, 0.396078, 0.458824, 1)
+
+[node name="Player" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.22091
+anchor_top = 0.296765
+anchor_right = 0.38791
+anchor_bottom = 0.691
+offset_left = 0.511993
+offset_top = -0.304001
+offset_right = 0.127991
+offset_bottom = 0.231995
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y0nvq")
+metadata/_edit_use_anchors_ = true
+
+[node name="b_hp" type="Label" parent="Player"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -24.0
+offset_right = 46.0
+offset_bottom = -4.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "HP 10/"
+
+[node name="hp" type="Label" parent="Player"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -24.0
+offset_right = 63.0
+offset_bottom = -4.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "10"
+
+[node name="name" type="Label" parent="Player"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.505
+anchor_right = 0.505
+offset_left = -31.96
+offset_top = 1.52588e-05
+offset_right = 32.04
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemy" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.609799
+anchor_top = 0.296765
+anchor_right = 0.776799
+anchor_bottom = 0.691
+offset_left = 0.511993
+offset_top = -0.304001
+offset_right = 0.127991
+offset_bottom = 0.231995
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y0nvq")
+metadata/_edit_use_anchors_ = true
+
+[node name="b_hp" type="Label" parent="Enemy"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -24.0
+offset_right = 46.0
+offset_bottom = -4.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "HP 10/"
+
+[node name="hp" type="Label" parent="Enemy"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -24.0
+offset_right = 63.0
+offset_bottom = -4.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "10"
+
+[node name="name" type="Label" parent="Enemy"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.505
+anchor_right = 0.505
+offset_left = -55.96
+offset_top = -1.52588e-05
+offset_right = 52.04
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "John the hard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Enemy"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.089
+anchor_top = 0.133
+anchor_right = 0.922
+anchor_bottom = 0.687
+offset_left = -0.0880013
+offset_top = -0.0480423
+offset_right = -0.0240173
+offset_bottom = 0.127777
+expand_mode = 1
+stretch_mode = 6
+
+[node name="attack" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_top = 0.691
+anchor_right = 0.388
+anchor_bottom = 0.79
+offset_left = 0.384003
+offset_top = 0.231964
+offset_right = 0.0239868
+offset_bottom = 0.0799866
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.921569, 0.247059, 0.247059, 1)
+text = "Attack"
+
+[node name="turn_end" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -88.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Turn End"
+
+[node name="turn" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -112.0
+offset_right = -64.0
+offset_bottom = -92.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Turn"
+
+[node name="turn_n" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -112.0
+offset_right = -56.0
+offset_bottom = -92.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "1"
+
+[node name="act_p" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -128.0
+offset_right = -24.0
+offset_bottom = -108.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Action Point"
+
+[node name="act_p_n" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -128.0
+offset_right = -16.0
+offset_bottom = -108.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "2"
+
+[node name="win_label" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.533
+anchor_right = 0.533
+offset_left = -319.36
+offset_top = 64.0
+offset_right = 320.64
+offset_bottom = 128.0
+
+[node name="win_label" type="Label" parent="win_label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 2.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.059
+anchor_right = 0.133
+anchor_bottom = 0.103
+offset_left = 64.0
+offset_top = 0.279995
+offset_right = 0.639999
+offset_bottom = -0.240005
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 94.0
+offset_bottom = 34.0
+text = "Attack Log:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Log" type="TextEdit" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.107
+anchor_right = 0.133
+anchor_bottom = 0.948
+offset_left = 64.0
+offset_top = -3.56001
+offset_right = 0.639999
+offset_bottom = 0.159912
+editable = false
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -88.0
+offset_right = 88.0
+offset_bottom = -24.0
+flat = true
+
+[connection signal="pressed" from="attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="turn_end" to="." method="_on_turn_end_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
