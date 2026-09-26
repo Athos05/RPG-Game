@@ -1,9 +1,11 @@
 class_name Enemy
 extends Entity
 
-func _init(p_name: String = "Enemy", p_max_hp: int = 10) -> void:
-	super._init(p_name, p_max_hp)
+@export var xp_reward: int = 10
 
 func execute_turn(target: Entity) -> void:
-	log_message.emit(entity_name + "\n")
-	attack(target)
+	reset_action_points()
+	
+	# Addig támad a körében, amíg van akciópontja és mindketten élnek
+	while current_action_points > 0 and is_alive() and target.is_alive():
+		try_attack(target)

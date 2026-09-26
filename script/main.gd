@@ -1,20 +1,18 @@
 extends Control
 
-# UI referenciák (csak a megjelenítésért felelnek)
-@onready var player_hp_label: Label = $Player/hp
-@onready var enemy_hp_label: Label = $Enemy/hp
-@onready var player_name_label: Label = $Player/name
-@onready var enemy_name_label: Label = $Enemy/name
+@export var player: Player
+@export var enemy: Enemy
 
-@onready var turn_n_label: Label = $turn_n
-@onready var act_p_n_label: Label = $act_p_n
-@onready var win_label: Control = $win_label
-@onready var win_label_text: Label = $win_label/win_label
-@onready var log_label: TextEdit = $Log
+@onready var player_hp_label = $Player/hp
+@onready var enemy_hp_label = $Enemy/hp
+@onready var player_name_label = $Player/name
+@onready var enemy_name_label = $Enemy/name
 
-# Tiszta, UI-független adatosztályok példányai
-var player: Player
-var enemy: Enemy
+@onready var turn_n_label = $turn_n
+@onready var act_p_n_label = $act_p_n
+@onready var win_label = $win_label
+@onready var win_label_text = $win_label/win_label
+@onready var log_label = $Log
 
 var current_turn: int = 1:
 	set(value):
@@ -23,11 +21,15 @@ var current_turn: int = 1:
 			turn_n_label.text = str(current_turn)
 
 func _ready() -> void:
-	# 1. Létrehozzuk a két példányt kódból: (Név, Max HP, Max AP)
-	player = Player.new("Hero", 12, 1)
-	enemy = Enemy.new("Goblin", 8)
+	if not player:
+		player = Player.new()
+	if not enemy:
+		enemy = Enemy.new()
+		
+	player.init_entity()
+	enemy.init_entity()
 	
-	# 2. Rákötjük a jelzéseiket (signal) a UI-frissítő függvényekre
+	# Jelzések összekötése a UI-jal
 	player.hp_changed.connect(_on_player_hp_changed)
 	player.ap_changed.connect(_on_player_ap_changed)
 	player.log_message.connect(_append_log)
@@ -35,7 +37,7 @@ func _ready() -> void:
 	enemy.hp_changed.connect(_on_enemy_hp_changed)
 	enemy.log_message.connect(_append_log)
 	
-	# 3. Kezdőértékek kiírása a UI-ra
+	# Kezdeti UI szövegek beállítása
 	player_name_label.text = player.entity_name
 	player_hp_label.text = str(player.current_hp)
 	act_p_n_label.text = str(player.current_action_points)
@@ -51,7 +53,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		log_label.visible = true
 
-# --- UI frissítő függvények (automatikusan lefutnak, ha változik az adat) ---
+# --- UI frissítő függvények ---
 
 func _on_player_hp_changed(new_hp: int) -> void:
 	player_hp_label.text = str(new_hp)
@@ -65,7 +67,7 @@ func _on_player_ap_changed(new_ap: int) -> void:
 func _append_log(text: String) -> void:
 	log_label.text += text
 
-# --- Játékmenet vezérlés ---
+# --- Harci vezérlés ---
 
 func check_winner() -> bool:
 	if not enemy.is_alive():
@@ -86,11 +88,13 @@ func _on_turn_end_pressed() -> void:
 	if check_winner():
 		return
 		
+	# Az ellenfél elhasználja az akciópontjait
 	enemy.execute_turn(player)
 	
 	if check_winner():
 		return
 		
+	# Új kör: növeljük a körszámlálót és visszatöltjük a játékos AP-ját
 	current_turn += 1
 	_append_log("Turn " + str(current_turn) + "\n")
 	player.reset_action_points()

@@ -8,17 +8,18 @@
 
 [sub_resource type="Resource" id="Resource_678ar"]
 script = ExtResource("2_s2fqp")
-entity_name = "Hero"
+max_action_points = null
+entity_name = null
 max_hp = 20
-max_action_points = 1
-attack_dc = 10
+max_action_points = null
+attack_dc = null
 damage_dice = 8
 metadata/_custom_type_script = "uid://dvyj56ywmn686"
 
 [sub_resource type="Resource" id="Resource_qk3yb"]
 script = ExtResource("3_s0p8x")
 xp_reward = 10
-entity_name = "Maci"
+entity_name = "Entity"
 max_hp = 10
 max_action_points = 1
 attack_dc = 10
