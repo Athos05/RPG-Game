@@ -73,7 +73,7 @@ func _on_turn_end_pressed():
 			log.text = log.text + "Turn" + str(turn_num) + "
 "	
 			#reset action point
-			act_p_n.text = "2"
+			act_p_n.text = "1"
 			pass # Replace with function body.
 
 func _on_attack_pressed():

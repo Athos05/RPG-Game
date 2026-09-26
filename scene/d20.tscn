@@ -1,14 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkcd56qyuwdka"]
+[gd_scene load_steps=7 format=3 uid="uid://dkcd56qyuwdka"]
 
-[ext_resource type="Script" uid="uid://dbbse507b8b6i" path="res://script/d20.gd" id="1_qw57l"]
+[ext_resource type="Script" uid="uid://duuhm8xmrs1nj" path="res://script/main.gd" id="1_ruigl"]
+[ext_resource type="Texture2D" uid="uid://iqhyilmv6rkg" path="res://sprite/tile/rogues.png" id="2_ruigl"]
+[ext_resource type="Texture2D" uid="uid://dk6pyxv68uv2p" path="res://sprite/tile/animals.png" id="3_dg0lh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0nvq"]
-bg_color = Color(0.439216, 0.368627, 0.411765, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+bg_color = Color(0.186133, 0.343307, 0.427858, 1)
 border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2fqp"]
+atlas = ExtResource("2_ruigl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0p8x"]
+atlas = ExtResource("3_dg0lh")
+region = Rect2(0, 0, 32, 32)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -17,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qw57l")
+script = ExtResource("1_ruigl")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -26,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.501961, 0.396078, 0.458824, 1)
+color = Color(0.091, 0.0937, 0.1, 1)
 
 [node name="Player" type="Panel" parent="."]
 layout_mode = 1
@@ -44,6 +50,18 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y0nvq")
 metadata/_edit_use_anchors_ = true
 
+[node name="image" type="TextureRect" parent="Player"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0833317
+anchor_top = 0.109376
+anchor_right = 0.916665
+anchor_bottom = 0.664063
+texture = SubResource("AtlasTexture_s2fqp")
+expand_mode = 1
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true
+
 [node name="b_hp" type="Label" parent="Player"]
 layout_mode = 1
 anchors_preset = 2
@@ -56,7 +74,7 @@ offset_bottom = -4.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
-text = "HP 10/"
+text = "HP"
 
 [node name="hp" type="Label" parent="Player"]
 layout_mode = 1
@@ -114,7 +132,7 @@ offset_bottom = -4.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
-text = "HP 10/"
+text = "HP"
 
 [node name="hp" type="Label" parent="Enemy"]
 layout_mode = 1
@@ -147,16 +165,14 @@ vertical_alignment = 1
 [node name="TextureRect" type="TextureRect" parent="Enemy"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.089
-anchor_top = 0.133
-anchor_right = 0.922
-anchor_bottom = 0.687
-offset_left = -0.0880013
-offset_top = -0.0480423
-offset_right = -0.0240173
-offset_bottom = 0.127777
+anchor_left = 0.0833311
+anchor_top = 0.160157
+anchor_right = 0.916664
+anchor_bottom = 0.714844
+texture = SubResource("AtlasTexture_s0p8x")
 expand_mode = 1
 stretch_mode = 6
+metadata/_edit_use_anchors_ = true
 
 [node name="attack" type="Button" parent="."]
 layout_mode = 1
@@ -247,7 +263,7 @@ offset_right = -16.0
 offset_bottom = -108.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 12
-text = "2"
+text = "1"
 
 [node name="win_label" type="Panel" parent="."]
 visible = false

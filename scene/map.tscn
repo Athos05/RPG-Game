@@ -152,6 +152,7 @@ sources/2 = SubResource("TileSetAtlasSource_h0nt1")
 [node name="map" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(16, 16)
 tile_set = SubResource("TileSet_h0nt1")
 format = 2
 layer_0/name = "Ground"
