@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://du8fjdahxkdcj"]
+[gd_scene load_steps=7 format=3 uid="uid://du8fjdahxkdcj"]
 
 [ext_resource type="Texture2D" uid="uid://b8xdclswm5s6b" path="res://sprite/tile/tiles.png" id="1_wpp1k"]
 [ext_resource type="PackedScene" uid="uid://b40baxadg3hpr" path="res://scene/player.tscn" id="2_wpp1k"]
+[ext_resource type="PackedScene" uid="uid://bqgjp1y32kk0k" path="res://scene/enemy.tscn" id="3_h0nt1"]
+[ext_resource type="Resource" uid="uid://c00uhg5vi8ahh" path="res://enemy/paraszt.tres" id="4_nf54y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h0nt1"]
 texture = ExtResource("1_wpp1k")
@@ -161,3 +163,11 @@ layer_1/name = "Ground_item"
 layer_1/tile_data = PackedInt32Array(589832, 393218, 17, 589831, 393218, 17, 655368, 393218, 17, 1114120, 262146, 17, 1048584, 262146, 17, 1114118, 262146, 17, 1114119, 262146, 17, 1179641, 196610, 17, 1179642, 131074, 17, 1179643, 196610, 17, 655353, 131074, 17, 655352, 196610, 17, 720888, 131074, 17, 655354, 196610, 17, 1179640, 2, 17, -131069, 131074, 17, -3, 196610, 17, -65539, 196610, 17, 65546, 327682, 17, 65550, 131074, 17, 65554, 131074, 17, 65557, 196610, 17, 196640, 393218, 17, 327712, 262146, 17, 786464, 131074, 17, 917523, 196610, 17, 917526, 262146, 17, 917535, 393218, 17, 917536, 131074, 17, 65541, 262146, 17, 131077, 393218, 17, 196613, 196610, 17, 458757, 262146, 17, 458771, 393218, 17, 524307, 393218, 17, 458772, 393218, 17, 524308, 393218, 17, 458773, 393218, 17, 524309, 393218, 17, 458774, 393218, 17, 524310, 393218, 17, 1769485, 196610, 17, 1769492, 262146, 17, 1769493, 196610, 17, 1769496, 393218, 17, 1376266, 131074, 17, 1048587, 393218, 17, 1048589, 262146, 17, 1048598, 131074, 17, 1441818, 196610, 17, 1572890, 196610, 17, 1441810, 393218, 17, 1441809, 393218, 17, 1507345, 393218, 17, 1507346, 393218, 17, 458784, 2, 17, 1769495, 2, 17)
 
 [node name="Player" parent="." instance=ExtResource("2_wpp1k")]
+
+[node name="Enemy" parent="." instance=ExtResource("3_h0nt1")]
+position = Vector2(191, 320)
+data = ExtResource("4_nf54y")
+
+[node name="Enemy2" parent="." instance=ExtResource("3_h0nt1")]
+position = Vector2(32, 575)
+data = ExtResource("4_nf54y")

@@ -1,5 +1,7 @@
 extends Control
 
+signal combat_finished(player_won: bool)
+
 @export var player: Player
 @export var enemy: Enemy
 
@@ -14,8 +16,9 @@ extends Control
 @onready var win_label_text = $win_label/win_label
 @onready var log_label = $Log
 
-# Megakadályozza, hogy a játékos támadjon, amíg az ellenfél köre (az 1 mp-es szünetekkel) tart
+# Megakadályozza, hogy a játékos támadjon, amíg az ellenfél köre tart
 var is_enemy_turn: bool = false
+var combat_ended: bool = false
 
 var current_turn: int = 1:
 	set(value):
@@ -76,15 +79,26 @@ func check_winner() -> bool:
 	if not enemy.is_alive():
 		win_label_text.text = player.entity_name + " Win!"
 		win_label.visible = true
+		if not combat_ended:
+			combat_ended = true
+			_finish_combat(true)
 		return true
 	elif not player.is_alive():
 		win_label_text.text = enemy.entity_name + " Win!"
 		win_label.visible = true
+		if not combat_ended:
+			combat_ended = true
+			_finish_combat(false)
 		return true
 	return false
 
+func _finish_combat(player_won: bool) -> void:
+	# Vár 1.5 másodpercet, hogy el lehessen olvasni a "Win!" feliratot, majd visszalép.
+	# (Ha azonnali visszalépést szeretnél, töröld ki az await sort!)
+	await get_tree().create_timer(1.5).timeout
+	combat_finished.emit(player_won)
+
 func _on_attack_pressed() -> void:
-	# Ha épp az ellenfél támad, vagy már vége a játéknak, ne csináljon semmit a gomb
 	if is_enemy_turn or check_winner():
 		return
 		
@@ -92,7 +106,6 @@ func _on_attack_pressed() -> void:
 		if check_winner():
 			return
 			
-		# Automata körléptetés, ha elfogyott az akciópont
 		if player.auto_end_turn and player.current_action_points <= 0:
 			_on_turn_end_pressed()
 
@@ -102,14 +115,12 @@ func _on_turn_end_pressed() -> void:
 		
 	is_enemy_turn = true
 	
-	# Megvárjuk, amíg az ellenfél végrehajtja az összes támadását (1 mp-es szünetekkel)
 	await enemy.execute_turn(player)
 	
 	if check_winner():
 		is_enemy_turn = false
 		return
 		
-	# Új kör indítása és a játékos AP-jának visszatöltése
 	current_turn += 1
 	_append_log("Turn " + str(current_turn) + "\n")
 	player.reset_action_points()

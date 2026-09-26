@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Player" load_steps=2 format=3 uid="uid://b83j3obqhthgk"]
+
+[ext_resource type="Script" uid="uid://dvyj56ywmn686" path="res://script/player_class.gd" id="1_ojdvx"]
+
+[resource]
+script = ExtResource("1_ojdvx")
+auto_end_turn = true
+entity_name = "Pisti"
+max_hp = 20
+armor = 14
+max_action_points = 1
+damage_dice = 8
+metadata/_custom_type_script = "uid://dvyj56ywmn686"

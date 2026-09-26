@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://c00uhg5vi8ahh"]
+
+[ext_resource type="Script" uid="uid://g0lq6n0hlpr5" path="res://script/enemy.gd" id="1_oyy1v"]
+
+[resource]
+script = ExtResource("1_oyy1v")
+action_delay = 1.0
+xp_reward = 10
+entity_name = "Paraszt"
+max_hp = 10
+armor = 6
+max_action_points = 1
+damage_dice = 4
+metadata/_custom_type_script = "uid://g0lq6n0hlpr5"

@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b40baxadg3hpr"]
+[gd_scene load_steps=5 format=3 uid="uid://b40baxadg3hpr"]
 
 [ext_resource type="Script" uid="uid://cdqwtdt5umpqe" path="res://script/player.gd" id="1_hjaqi"]
+[ext_resource type="PackedScene" uid="uid://dkcd56qyuwdka" path="res://scene/combat.tscn" id="2_fvtld"]
 [ext_resource type="Texture2D" uid="uid://iqhyilmv6rkg" path="res://sprite/tile/rogues.png" id="2_hjaqi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjaqi"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hjaqi")
+combat_scene = ExtResource("2_fvtld")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_hjaqi")
