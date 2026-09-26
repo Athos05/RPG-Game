@@ -5,11 +5,11 @@ signal hp_changed(new_hp: int)
 signal ap_changed(new_ap: int)
 signal log_message(text: String)
 
-# Inspectorban szerkeszthető közös tulajdonságok (Player és Enemy is megkapja)
+# Inspectorban szerkeszthető tulajdonságok (Player és Enemy is örökli)
 @export var entity_name: String = "Entity"
 @export var max_hp: int = 10
+@export var armor: int = 10 # A fix 10 helyett mostantól ez a védőérték (AC)
 @export var max_action_points: int = 1
-@export var attack_dc: int = 10
 @export var damage_dice: int = 4
 
 var current_hp: int:
@@ -45,13 +45,15 @@ func roll_damage() -> int:
 	return result
 
 func attack(target: Entity) -> void:
-	log_message.emit("Start attack:\n")
-	if is_alive() and roll_d20() > attack_dc:
+	log_message.emit("Start attack (Target Armor: " + str(target.armor) + "):\n")
+	# A támadó d20 dobását a célpont (target) armor értékével hasonlítjuk össze
+	if is_alive() and roll_d20() > target.armor:
 		var dmg := roll_damage()
 		target.take_damage(dmg)
+	else:
+		log_message.emit("Miss!\n")
 	log_message.emit("End attack\n\n")
 
-# Közös támadás akciópontból: ha van AP, támad és levon 1 pontot
 func try_attack(target: Entity) -> bool:
 	if current_action_points <= 0 or not is_alive():
 		return false

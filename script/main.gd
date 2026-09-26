@@ -14,6 +14,9 @@ extends Control
 @onready var win_label_text = $win_label/win_label
 @onready var log_label = $Log
 
+# Megakadályozza, hogy a játékos támadjon, amíg az ellenfél köre (az 1 mp-es szünetekkel) tart
+var is_enemy_turn: bool = false
+
 var current_turn: int = 1:
 	set(value):
 		current_turn = value
@@ -81,20 +84,33 @@ func check_winner() -> bool:
 	return false
 
 func _on_attack_pressed() -> void:
+	# Ha épp az ellenfél támad, vagy már vége a játéknak, ne csináljon semmit a gomb
+	if is_enemy_turn or check_winner():
+		return
+		
 	if player.try_attack(enemy):
-		check_winner()
+		if check_winner():
+			return
+			
+		# Automata körléptetés, ha elfogyott az akciópont
+		if player.auto_end_turn and player.current_action_points <= 0:
+			_on_turn_end_pressed()
 
 func _on_turn_end_pressed() -> void:
-	if check_winner():
+	if is_enemy_turn or check_winner():
 		return
 		
-	# Az ellenfél elhasználja az akciópontjait
-	enemy.execute_turn(player)
+	is_enemy_turn = true
+	
+	# Megvárjuk, amíg az ellenfél végrehajtja az összes támadását (1 mp-es szünetekkel)
+	await enemy.execute_turn(player)
 	
 	if check_winner():
+		is_enemy_turn = false
 		return
 		
-	# Új kör: növeljük a körszámlálót és visszatöltjük a játékos AP-ját
+	# Új kör indítása és a játékos AP-jának visszatöltése
 	current_turn += 1
 	_append_log("Turn " + str(current_turn) + "\n")
 	player.reset_action_points()
+	is_enemy_turn = false

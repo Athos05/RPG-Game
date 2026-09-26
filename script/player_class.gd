@@ -1,4 +1,5 @@
 class_name Player
 extends Entity
 
-# Ide jöhetnek majd a csak játékosra jellemző változók (pl. arany, szint, leltár)
+# Ha be van pipálva az Inspectorban, 0 AP-nál automatikusan véget ér a kör
+@export var auto_end_turn: bool = true

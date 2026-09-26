@@ -1,27 +1,29 @@
 [gd_scene load_steps=11 format=3 uid="uid://dkcd56qyuwdka"]
 
-[ext_resource type="Script" uid="uid://duuhm8xmrs1nj" path="res://script/main.gd" id="1_ruigl"]
-[ext_resource type="Texture2D" uid="uid://iqhyilmv6rkg" path="res://sprite/tile/rogues.png" id="2_ruigl"]
-[ext_resource type="Script" uid="uid://dvyj56ywmn686" path="res://script/player_class.gd" id="2_s2fqp"]
-[ext_resource type="Texture2D" uid="uid://dk6pyxv68uv2p" path="res://sprite/tile/animals.png" id="3_dg0lh"]
-[ext_resource type="Script" uid="uid://g0lq6n0hlpr5" path="res://script/enemy.gd" id="3_s0p8x"]
+[ext_resource type="Script" uid="uid://duuhm8xmrs1nj" path="res://script/main.gd" id="1_cq5ph"]
+[ext_resource type="Script" uid="uid://dvyj56ywmn686" path="res://script/player_class.gd" id="2_hg15g"]
+[ext_resource type="Script" uid="uid://g0lq6n0hlpr5" path="res://script/enemy.gd" id="3_3xldi"]
+[ext_resource type="Texture2D" uid="uid://iqhyilmv6rkg" path="res://sprite/tile/rogues.png" id="4_00un4"]
+[ext_resource type="Texture2D" uid="uid://dk6pyxv68uv2p" path="res://sprite/tile/animals.png" id="5_aiago"]
 
 [sub_resource type="Resource" id="Resource_678ar"]
-script = ExtResource("2_s2fqp")
+script = ExtResource("2_hg15g")
+auto_end_turn = true
 entity_name = "Hero"
 max_hp = 20
-max_action_points = 1
-attack_dc = 10
+armor = 14
+max_action_points = 2
 damage_dice = 8
 metadata/_custom_type_script = "uid://dvyj56ywmn686"
 
 [sub_resource type="Resource" id="Resource_qk3yb"]
-script = ExtResource("3_s0p8x")
+script = ExtResource("3_3xldi")
+action_delay = 1.0
 xp_reward = 10
 entity_name = "Maci"
-max_hp = 10
-max_action_points = 1
-attack_dc = 10
+max_hp = 20
+armor = 6
+max_action_points = 2
 damage_dice = 4
 metadata/_custom_type_script = "uid://g0lq6n0hlpr5"
 
@@ -30,11 +32,11 @@ bg_color = Color(0.186133, 0.343307, 0.427858, 1)
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s2fqp"]
-atlas = ExtResource("2_ruigl")
+atlas = ExtResource("4_00un4")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s0p8x"]
-atlas = ExtResource("3_dg0lh")
+atlas = ExtResource("5_aiago")
 region = Rect2(0, 0, 32, 32)
 
 [node name="Control" type="Control"]
@@ -44,7 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ruigl")
+script = ExtResource("1_cq5ph")
 player = SubResource("Resource_678ar")
 enemy = SubResource("Resource_qk3yb")
 
@@ -213,21 +215,6 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.921569, 0.247059, 0.247059, 1)
 text = "Attack"
 
-[node name="turn_end" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -102.0
-offset_top = -88.0
-offset_right = -24.0
-offset_bottom = -24.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Turn End"
-
 [node name="turn" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -355,5 +342,4 @@ offset_bottom = -24.0
 flat = true
 
 [connection signal="pressed" from="attack" to="." method="_on_attack_pressed"]
-[connection signal="pressed" from="turn_end" to="." method="_on_turn_end_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
