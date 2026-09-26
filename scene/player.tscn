@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dknmqh44c0cd1"]
 
 [ext_resource type="Script" uid="uid://cdqwtdt5umpqe" path="res://script/player.gd" id="1_hjaqi"]
-[ext_resource type="Texture2D" uid="uid://bsk4hacvlr3ce" path="res://icon.svg" id="1_xo3ru"]
+[ext_resource type="Texture2D" uid="uid://iqhyilmv6rkg" path="res://sprite/tile/rogues.png" id="2_hjaqi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xo3ru"]
 radius = 17.0294
@@ -10,8 +10,9 @@ radius = 17.0294
 script = ExtResource("1_hjaqi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_xo3ru")
+texture = ExtResource("2_hjaqi")
+hframes = 7
+vframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_xo3ru")
