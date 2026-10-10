@@ -7,7 +7,6 @@ signal log_message(text: String)
 
 # Inspectorban szerkeszthető tulajdonságok (Player és Enemy is örökli)
 @export var entity_name: String = "Entity"
-
 @export var max_hp: int = 10
 @export var armor: int = 10 # A fix 10 helyett mostantól ez a védőérték (AC)
 @export var max_action_points: int = 1

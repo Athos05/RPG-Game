@@ -28,10 +28,10 @@ func _physics_process(delta):
 		return
 
 	var direction := Input.get_vector(
-		"move_left",
-		"move_rigth",
-		"move_up",
-		"move_down"
+		"ui_left",
+		"ui_right",
+		"ui_up",
+		"ui_down"
 	)
 
 	if direction == Vector2.ZERO:

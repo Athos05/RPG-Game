@@ -6,7 +6,7 @@
 script = ExtResource("1_oyy1v")
 action_delay = 1.0
 xp_reward = 10
-entity_name = "Bear"
+entity_name = "Paraszt"
 max_hp = 10
 armor = 6
 max_action_points = 1
