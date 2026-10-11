@@ -20,7 +20,7 @@ offset_left = -1.0
 offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(4.01388e-05, 0.00302327, 0.0630179, 1)
+color = Color(0.345405, 0.356305, 0.374315, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
